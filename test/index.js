@@ -15,7 +15,7 @@ reds.version.should.match(/^\d+\.\d+\.\d+$/);
 
 reds
   .words('foo bar baz สวัสดีครับ')
-  .should.eql(['foo', 'bar', 'baz', 'สวัสดีครับ']);
+  .should.eql(['foo', 'bar', 'baz', 'สวัสดี','ครับ']);
 
 reds
   .words(' Punctuation and whitespace; should be, handled. มาก เลย')
@@ -66,11 +66,33 @@ db.flushdb(function(){
     .index('computing stuff', 6)
     .index('simple words do not mean simple ideas', 7)
     .index('The dog spoke the words, much to our unbelief.', 8)
-    .index('puppy dog eagle puppy frog puppy dog simple', 9);
+    .index('puppy dog eagle puppy frog puppy dog simple', 9)
+    .index('ทดสอบ ภาษาไทย ดูนะครับ', 10)
+    .index('ทดสอบ', 11);
 });
 
 function test() {
   var pending = 0;
+
+  ++pending;
+  search
+    .query('ภาษาไทย')
+    .end(function(err, ids){
+      if (err) throw err;
+      ids.should.eql(['10']);
+      --pending || done();
+    });
+
+  ++pending;
+  search
+    .query('ทดสอบ')
+    .end(function(err, ids){
+      if (err) throw err;
+      ids.should.have.length(2);
+      ids.should.containEql('10');
+      ids.should.containEql('11');
+      --pending || done();
+    });
 
   ++pending;
   search
@@ -87,9 +109,9 @@ function test() {
     .end(function(err, ids){
       if (err) throw err;
       ids.should.have.length(3);
-      ids.should.include('0');
-      ids.should.include('3');
-      ids.should.include('5');
+      ids.should.containEql('0');
+      ids.should.containEql('3');
+      ids.should.containEql('5');
       --pending || done();
     });
 
@@ -99,9 +121,9 @@ function test() {
     .end(function(err, ids){
       if (err) throw err;
       ids.should.have.length(3);
-      ids.should.include('0');
-      ids.should.include('3');
-      ids.should.include('5');
+      ids.should.containEql('0');
+      ids.should.containEql('3');
+      ids.should.containEql('5');
       --pending || done();
     });
 
@@ -130,8 +152,8 @@ function test() {
     .end(function(err, ids){
       if (err) throw err;
       ids.should.have.length(2);
-      ids.should.include('2');
-      ids.should.include('4');
+      ids.should.containEql('2');
+      ids.should.containEql('4');
       --pending || done();
     });
 
@@ -142,8 +164,8 @@ function test() {
     .end(function(err, ids){
       if (err) throw err;
       ids.should.have.length(2);
-      ids.should.include('2');
-      ids.should.include('4');
+      ids.should.containEql('2');
+      ids.should.containEql('4');
       --pending || done();
     });
 
@@ -180,8 +202,8 @@ function test() {
     .end(function(err, ids){
       if (err) throw err;
       ids.should.have.length(2);
-      ids.should.include('7');
-      ids.should.include('9');
+      ids.should.containEql('7');
+      ids.should.containEql('9');
       ids[0].should.eql('7');
       ids[1].should.eql('9');
       --pending || done();
@@ -194,9 +216,9 @@ function test() {
     .end(function(err, ids){
       if (err) throw err;
       ids.should.have.length(3);
-      ids.should.include('7');
-      ids.should.include('8');
-      ids.should.include('9');
+      ids.should.containEql('7');
+      ids.should.containEql('8');
+      ids.should.containEql('9');
       ids[0].should.eql('9');
       --pending || done();
     });

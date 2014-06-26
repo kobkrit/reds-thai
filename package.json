@@ -1,6 +1,6 @@
 {
     "name": "reds-thai",
-    "version": "0.1",
+    "version": "0.0.1",
     "description": "Redis Thai search (with word prefix) for node.js",
     "keywords": [
         "redis",
@@ -17,9 +17,9 @@
         "wordcut": "latest"
     },
     "devDependencies": {
-        "should": "*",
-        "uubench": "*",
-        "superagent": "*"
+        "should": "latest",
+        "uubench": "latest",
+        "superagent": "latest"
     },
     "main": "index",
     "repository": {
