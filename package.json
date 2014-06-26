@@ -1,0 +1,29 @@
+{
+    "name": "reds-thai",
+    "version": "0.1",
+    "description": "Redis Thai search (with word prefix) for node.js",
+    "keywords": [
+        "redis",
+        "search",
+        "thai",
+        "metaphone",
+        "phonetics",
+        "natural"
+    ],
+    "author": "Kobkrit Viriyayudhakorn <kobkrit@iapp.co.th>",
+    "dependencies": {
+        "natural": "latest",
+        "redis": "latest",
+        "wordcut": "latest"
+    },
+    "devDependencies": {
+        "should": "*",
+        "uubench": "*",
+        "superagent": "*"
+    },
+    "main": "index",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kobkrit/reds-thai.git"
+    }
+}
