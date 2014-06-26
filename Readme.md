@@ -4,7 +4,7 @@
 
   This project have two updates from reds.
   1. It supports Thai language. We uses Thai word segmentation from wordcut library (https://github.com/veer66/wordcut).
-  2. It includes prefix search. originally, the reds does not index the prefix of words. The articles that have word `tomato` can not be found by search query `tom`. Users need to input the full query `tomato` to found them.
+  2. It includes prefix search. originally, the reds does not index the prefix of words. The articles that have word `tomato` can not be found by search query `tom`. Users need to input the full query `tomato` to found them. With this library, keyword `tom` is indexed for `tomato`.
 
 ## Installation
 
