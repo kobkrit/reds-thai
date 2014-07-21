@@ -1,6 +1,6 @@
 {
     "name": "reds-thai",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Redis Thai search (with word prefix) for node.js",
     "keywords": [
         "redis",
